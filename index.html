@@ -1,8 +1,32 @@
-<!doctype HTML>
-<html><script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-<script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.5/aframe/build/aframe-ar.js"></script><body style='margin : 0px; overflow: scroll;'>
-  <a-scene embedded arjs>
-    <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
-    <a-marker-camera preset='hiro'></a-marker-camera>
-  </a-scene>
-</body></html>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AR.js Local GLB Example</title>
+
+    <!-- A-Frame + AR.js -->
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.5/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam;">
+      <!-- Load your local GLB -->
+      <a-assets>
+        <a-asset-item id="my-model" src="src/assets/cod.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- Show model when the 'hiro' marker is detected -->
+      <a-marker preset="hiro">
+        <a-entity
+          gltf-model="#my-model"
+          scale="0.5 0.5 0.5"
+          rotation="0 180 0"
+          position="0 0 0"
+        ></a-entity>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
