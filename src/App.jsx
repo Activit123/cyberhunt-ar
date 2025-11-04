@@ -32,9 +32,13 @@ function App() {
     <div style={{ margin: 0, overflow: 'hidden' }}>
       <Scene
         vr-mode-ui="enabled: false"
-        renderer="logarithmicDepthBuffer: true;"
-        embedded
-        arjs="sourceType: webcam; debugUIEnabled: false;"
+  // AICI ESTE MODIFICAREA CHEIE
+  renderer="logarithmicDepthBuffer: true; colorManagement: true;"
+  // Am adăugat "allow-scripts; camera; geolocation; magnetometer; gyroscope;"
+  // pentru a forța browser-ul să permită accesul
+  scene-controller="camera; geolocation; magnetometer; gyroscope;"
+  embedded
+  arjs="sourceType: webcam; debugUIEnabled: false;"
       >
         <a-marker 
           type="pattern" 
